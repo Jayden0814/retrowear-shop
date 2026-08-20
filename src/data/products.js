@@ -80,6 +80,10 @@ export const products = [
     stripeLink: 'https://buy.stripe.com/test_8x228r1dk0oa9Qf3rH0000a',
     badge: 'Low-Key Flex',
   },
+{id:4,slug:'y2k-chrome-belt',name:'Y2K Chrome Belt',category:'Accessories',price:15,currency:'CAD',description:'Y2K-style belt with a bold chrome buckle. One size fits most.',sizes:['110cm'],gallery:['belt-chrome.jpg'],stripeLink:'https://buy.stripe.com/test_cNieVd4pw1se9Qf0fv00008',badge:'New'},
+ {id:5,slug:'y2k-spiderweb-beanie',name:'Y2K Spiderweb Beanie',category:'Accessories',price:12,currency:'CAD',description:'Y2K-style spiderweb knit beanie. Available in Black and Pink.',longDescription:'A grunge-meets-Y2K accessory with bold spiderweb knit graphics. Soft stretch fit for everyday wear.',colors:[{name:'Black',value:'black',image:'beanie-spider-black.jpg',stripeLink:'https://buy.stripe.com/test_dRmdR9g8egn81jJe6l0000e'},{name:'Pink',value:'pink',image:'beanie-spider-pink.jpg',stripeLink:'https://buy.stripe.com/test_fZu3cv2ho2wi9Qffap0000c'}],gallery:['beanie-spider-black.jpg','beanie-spider-pink.jpg'],stripeLink:'https://buy.stripe.com/test_dRmdR9g8egn81jJe6l0000e',badge:'New Drop'},
+ 
+
 ]
 
 export const featuredProducts = products.slice(0, 3)
