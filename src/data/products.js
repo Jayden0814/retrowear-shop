@@ -50,7 +50,7 @@ export const products = [
     slug: 'y2k-letter-graphic-beanie',
     name: 'Y2K Letter Graphic Beanie',
     category: 'Accessories',
-    price: 7,
+    price: 12,
     currency: 'CAD',
     description:
       'Y2K-style beanie with bold graffiti letter graphics in selected colorways. Soft stretch fit and easy all-day wear.',

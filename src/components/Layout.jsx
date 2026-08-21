@@ -1,4 +1,5 @@
 import { Outlet, Link, NavLink } from 'react-router-dom'
+import { useCart } from '../context/CartContext'
 
 const navItems = [
   { to: '/', label: 'Home' },
@@ -6,6 +7,8 @@ const navItems = [
 ]
 
 function Layout() {
+  const { cartCount } = useCart()
+
   return (
     <div className="page-shell">
       <header className="site-header">
@@ -30,9 +33,15 @@ function Layout() {
           ))}
         </nav>
 
-        <Link to="/shop" className="button button--primary header-cta">
-          Shop Now
-        </Link>
+        <div className="header-actions">
+          <Link to="/cart" className="cart-link" aria-label={`Cart with ${cartCount} items`}>
+            <span aria-hidden="true">🛒</span>
+            <span className="cart-link__count">{cartCount}</span>
+          </Link>
+          <Link to="/shop" className="button button--primary header-cta">
+            Shop Now
+          </Link>
+        </div>
       </header>
 
       <main className="content-wrap">

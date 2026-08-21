@@ -1,8 +1,10 @@
 import { useMemo, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { products } from '../data/products'
+import { useCart } from '../context/CartContext'
 
 function ProductPage() {
+  const { addToCart } = useCart()
   const { slug } = useParams()
   const product = useMemo(
     () => products.find((item) => item.slug === slug),
@@ -118,6 +120,22 @@ function ProductPage() {
           )}
 
           <div className="purchase-panel">
+            <button
+              type="button"
+              className="button button--secondary"
+              onClick={() =>
+                addToCart({
+                  product,
+                  selectedColor,
+                  selectedColorName: selectedColorOption?.name,
+                  selectedSize,
+                  stripeLink: buyLink,
+                  image: activeImage,
+                })
+              }
+            >
+              Add to Cart
+            </button>
             <a href={buyLink} target="_blank" rel="noreferrer" className="button button--primary">
               Buy Now
             </a>
