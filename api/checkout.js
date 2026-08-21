@@ -22,7 +22,8 @@ function getLineItems(cartItems, origin) {
 
     const color = product.colors?.find((option) => option.value === item.selectedColor)
     const options = [color?.name, item.selectedSize].filter(Boolean)
-    const image = item.image || color?.image || product.gallery?.[0]
+    const image = product.image || item.image || color?.image || product.gallery?.[0]
+    const imagePath = image?.startsWith('/') ? image : `/images/${image}`
 
     return {
       quantity,
@@ -31,7 +32,7 @@ function getLineItems(cartItems, origin) {
         unit_amount: Math.round(product.price * 100),
         product_data: {
           name: options.length ? `${product.name} / ${options.join(' / ')}` : product.name,
-          images: image ? [new URL(`/images/${image}`, origin).toString()] : undefined,
+          images: image ? [`${origin}${imagePath}`] : undefined,
         },
       },
     }
@@ -51,7 +52,7 @@ export default async function handler(req, res) {
       mode: 'payment',
       line_items: getLineItems(body?.cartItems, origin),
       shipping_address_collection: { allowed_countries: ['CA'] },
-      success_url: `${origin}/cart?checkout=success`,
+      success_url: `${origin}/success`,
       cancel_url: `${origin}/cart?checkout=cancelled`,
     })
 
