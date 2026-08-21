@@ -25,6 +25,8 @@ function getLineItems(cartItems, origin) {
     const image = product.image || item.image || color?.image || product.gallery?.[0]
     const imagePath = image?.startsWith('/') ? image : `/images/${image}`
 
+    console.log('DEBUG image url:', image ? `${origin}${imagePath}` : 'no image found for', product.name)
+
     return {
       quantity,
       price_data: {
