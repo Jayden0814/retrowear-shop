@@ -50,15 +50,19 @@ export default async function handler(req, res) {
   try {
     const body = typeof req.body === 'string' ? JSON.parse(req.body) : req.body
     const origin = getOrigin(req)
-    const session = await stripe.checkout.sessions.create({
-      mode: 'payment',
-      line_items: getLineItems(body?.cartItems, origin),
-      shipping_address_collection: { allowed_countries: ['CA'] },
-      success_url: `${origin}/success`,
-      cancel_url: `${origin}/cart?checkout=cancelled`,
-    })
+    const line_items = getLineItems(body?.cartItems, origin)
 
-    return res.status(200).json({ url: session.url })
+    return res.status(200).json({ debug_line_items: line_items })
+
+    // const session = await stripe.checkout.sessions.create({
+    //   mode: 'payment',
+    //   line_items: getLineItems(body?.cartItems, origin),
+    //   shipping_address_collection: { allowed_countries: ['CA'] },
+    //   success_url: `${origin}/success`,
+    //   cancel_url: `${origin}/cart?checkout=cancelled`,
+    // })
+
+    // return res.status(200).json({ url: session.url })
   } catch (error) {
     console.error('Stripe checkout session error:', error)
     return res.status(400).json({ error: error.message || 'Unable to create checkout session.' })
